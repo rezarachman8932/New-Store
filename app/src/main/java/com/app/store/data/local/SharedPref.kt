@@ -15,4 +15,12 @@ class SharedPref(context: Context) {
         return sessionPref.getString(SharedPrefConstant.PREF_TOKEN, "").orEmpty()
     }
 
+    fun setLoggedIn(loggedIn: Boolean) {
+        sessionPref.edit().putBoolean(SharedPrefConstant.IS_LOGGED_IN, loggedIn).apply()
+    }
+
+    fun isLoggedIn(): Boolean {
+        return sessionPref.getBoolean(SharedPrefConstant.IS_LOGGED_IN, false)
+    }
+
 }

@@ -19,4 +19,8 @@ class UserUseCase(private val userRepository: UserRepository) {
         userRepository.destroySession()
     }
 
+    suspend fun setToken(token: String) = withContext(Dispatchers.IO) {
+        userRepository.setToken(token)
+    }
+
 }

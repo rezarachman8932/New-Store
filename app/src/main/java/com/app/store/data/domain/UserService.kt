@@ -10,17 +10,17 @@ import retrofit2.http.POST
 
 interface UserService {
 
-    @POST("api/users")
+    @POST("users")
     suspend fun createUser(
         @Body request: UserCreateRequest
     ) : Response<UserCreateSession>
 
-    @POST("api/session")
+    @POST("session")
     suspend fun createSession(
         @Body request: UserCreateRequest
     ) : Response<UserCreateSession>
 
-    @DELETE("api/session")
+    @DELETE("session")
     suspend fun destroySession() : Response<UserDeleteSessionResponse>
 
 }

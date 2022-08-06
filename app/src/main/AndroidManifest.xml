@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewStore">
         <activity
-            android:name=".presentation.splash.SplashActivity"
+            android:name=".presentation.user.UserLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
