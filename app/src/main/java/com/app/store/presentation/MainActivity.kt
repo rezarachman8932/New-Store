@@ -1,11 +1,14 @@
-package com.app.store
+package com.app.store.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.app.store.R
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 }
