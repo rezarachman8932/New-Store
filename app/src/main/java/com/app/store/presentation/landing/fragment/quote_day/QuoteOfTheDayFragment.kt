@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.app.store.R
 import com.app.store.data.model.QuoteOfTheDayResponse
-import com.app.store.shared.model.BaseResponse
-import com.app.store.shared.model.ResultState
 import kotlinx.android.synthetic.main.frag_quote_of_the_day.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,15 +26,8 @@ class QuoteOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.quoteOfTheDay.observe(viewLifecycleOwner) { constructList(it) }
+        viewModel.quoteOfTheDay.observe(viewLifecycleOwner) { bindData(it) }
         viewModel.getQuoteOfTheDay()
-    }
-
-    private fun constructList(result: ResultState<BaseResponse<QuoteOfTheDayResponse>>) {
-        when (result) {
-            is ResultState.Success -> { result.data?.let { bindData(it.data) } }
-            is ResultState.Error -> {  }
-        }
     }
 
     private fun bindData(response: QuoteOfTheDayResponse) {

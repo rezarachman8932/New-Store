@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.app.store.R
 import com.app.store.data.model.QuoteOfTheDayDetail
-import com.app.store.shared.model.BaseResponse
-import com.app.store.shared.model.ResultState
 import kotlinx.android.synthetic.main.frag_quote_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,15 +36,8 @@ class QuoteDetailFragment : Fragment() {
         adapter = QuoteDetailTagAdapter {  }
         rv_tag_quote_detail.adapter = adapter
 
-        viewModel.quoteDetail.observe(viewLifecycleOwner) { constructContent(it) }
+        viewModel.quoteDetail.observe(viewLifecycleOwner) { bindData(it) }
         viewModel.getQuoteDetail(param)
-    }
-
-    private fun constructContent(result: ResultState<BaseResponse<QuoteOfTheDayDetail>>) {
-        when (result) {
-            is ResultState.Success -> { result.data?.let { bindData(it.data) } }
-            is ResultState.Error -> {  }
-        }
     }
 
     private fun bindData(response: QuoteOfTheDayDetail) {

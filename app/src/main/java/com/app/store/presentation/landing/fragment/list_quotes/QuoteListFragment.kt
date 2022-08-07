@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.store.R
 import com.app.store.data.model.QuoteListResponse
-import com.app.store.shared.model.BaseResponse
-import com.app.store.shared.model.ResultState
 import kotlinx.android.synthetic.main.frag_quote_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class QuoteListFragment : Fragment() {
 
@@ -31,22 +34,26 @@ class QuoteListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = QuoteListAdapter {
-
+            activity?.let { activity ->
+                val navController: NavController = Navigation.findNavController(activity, R.id.nav_host_fragment)
+                val bundle = Bundle()
+                bundle.putString("quoteId", it.id.toString())
+                navController.navigate(R.id.action_quoteListFragment_to_quoteDetailFragment, bundle)
+            }
         }
+
+        val layoutManagerList = LinearLayoutManager(context)
+        rv_quote_list.layoutManager = layoutManagerList
         rv_quote_list.adapter = adapter
+        rv_quote_list.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         viewModel.quoteList.observe(viewLifecycleOwner) { constructList(it) }
         viewModel.getQuoteList()
     }
 
-    private fun constructList(result: ResultState<BaseResponse<QuoteListResponse>>) {
-        when (result) {
-            is ResultState.Success -> { result.data?.let {
-                if (it.data.quotes.size > 0) {
-                    adapter.setItem(result.data.data.quotes)
-                }
-            } }
-            is ResultState.Error -> {  }
+    private fun constructList(result: QuoteListResponse) {
+        if (result.quotes.size > 0) {
+            adapter.setItem(result.quotes)
         }
     }
 
