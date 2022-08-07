@@ -6,6 +6,7 @@ import com.app.store.data.local.SharedPref
 import com.app.store.data.repository.QuoteRepository
 import com.app.store.data.repository.UserRepository
 import com.app.store.data.service.APIService
+import com.app.store.presentation.landing.fragment.list_quotes.QuoteListViewModel
 import com.app.store.presentation.user.UserLoginViewModel
 import com.app.store.presentation.user.UserRegistrationViewModel
 import com.app.store.shared.usecase.QuoteUseCase
@@ -40,6 +41,7 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { UserRegistrationViewModel(get()) }
     viewModel { UserLoginViewModel(get()) }
+    viewModel { QuoteListViewModel(get()) }
 }
 
 val appComponent: List<Module> = listOf(

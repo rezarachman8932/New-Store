@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.MainActivity"/>
+        <activity android:name=".presentation.landing.MainActivity"/>
+        <activity android:name=".presentation.splash.SplashActivity"/>
+        <activity android:name=".presentation.user.UserRegistrationActivity"/>
     </application>
 
 </manifest>
