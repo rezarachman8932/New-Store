@@ -1,7 +1,7 @@
 package com.app.store.presentation.user
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.app.store.R
 import com.app.store.data.model.UserCreateRequest
@@ -18,7 +18,9 @@ class UserRegistrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_registration)
 
         viewModel.userCreate.observe(this) {
-
+            val intent = Intent(this, UserLoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         button_register.setOnClickListener { doRegistration() }

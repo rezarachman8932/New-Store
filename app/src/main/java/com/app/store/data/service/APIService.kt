@@ -2,7 +2,7 @@ package com.app.store.data.service
 
 import com.app.store.BuildConfig
 import com.app.store.data.local.SharedPref
-import com.app.store.shared.constant.NetworkConstant
+import com.app.store.shared.constant.CommonConstant
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -47,7 +47,7 @@ object APIService {
     private fun getInterceptorChain(sharedPreferences: SharedPref): Interceptor {
         return Interceptor { chain: Interceptor.Chain ->
             val request: Request = chain.request().newBuilder()
-                .header("Authorization", "Token token="+NetworkConstant.API_KEY)
+                .header("Authorization", "Token token="+CommonConstant.API_KEY)
                 .header("User-Token", sharedPreferences.getToken())
                 .header("Accept", "application/vnd.favqs.v2+json;")
                 .header("Etag", "558f0b9bea2e6910b1f93de7f4c0d47c")

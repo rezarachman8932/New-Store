@@ -3,7 +3,6 @@ package com.app.store.data.repository
 import com.app.store.data.domain.UserService
 import com.app.store.data.local.SharedPref
 import com.app.store.data.model.UserCreateRequest
-import com.app.store.shared.constant.SharedPrefConstant
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -38,6 +37,18 @@ class UserRepository(
 
     fun isLoggedIn(): Boolean {
         return sharedPref.isLoggedIn()
+    }
+
+    fun setName(name: String) {
+        sharedPref.setName(name)
+    }
+
+    fun getName(): String {
+        return sharedPref.getName()
+    }
+
+    fun deleteName() {
+        sharedPref.deleteName()
     }
 
 }

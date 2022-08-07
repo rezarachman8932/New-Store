@@ -14,6 +14,14 @@ class QuoteRepository(private val quoteService: QuoteService) {
         quoteService.getListQuotes()
     }
 
+    suspend fun getListQuotesBySearch(keyword: String) = withContext(Dispatchers.IO) {
+        quoteService.getListQuotesBySearch(keyword)
+    }
+
+    suspend fun getListQuotesByTag(tag: String) = withContext(Dispatchers.IO) {
+        quoteService.getListQuotesByTag(tag, "tag")
+    }
+
     suspend fun getQuote(quoteId: String) = withContext(Dispatchers.IO) {
         quoteService.getQuote(quoteId)
     }

@@ -7,7 +7,8 @@ import com.app.store.data.repository.QuoteRepository
 import com.app.store.data.repository.UserRepository
 import com.app.store.data.service.APIService
 import com.app.store.presentation.landing.fragment.home.HomeViewModel
-import com.app.store.presentation.landing.fragment.list_quotes.QuoteListViewModel
+import com.app.store.presentation.landing.fragment.list_quotes.keyword.QuoteListViewModel
+import com.app.store.presentation.landing.fragment.list_quotes.tag.QuoteListTagSearchViewModel
 import com.app.store.presentation.landing.fragment.quote_day.QuoteOfTheDayViewModel
 import com.app.store.presentation.landing.fragment.quote_detail.QuoteDetailViewModel
 import com.app.store.presentation.splash.SplashViewModel
@@ -50,6 +51,7 @@ val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { QuoteOfTheDayViewModel(get()) }
     viewModel { QuoteDetailViewModel(get()) }
+    viewModel { QuoteListTagSearchViewModel(get()) }
 }
 
 val appComponent: List<Module> = listOf(

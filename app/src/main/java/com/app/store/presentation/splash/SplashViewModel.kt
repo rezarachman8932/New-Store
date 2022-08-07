@@ -9,4 +9,8 @@ class SplashViewModel(private val userUseCase: UserUseCase) : BaseViewModel() {
         return userUseCase.isLoggedIn()
     }
 
+    fun getUsername(): String {
+        return userUseCase.getName()
+    }
+
 }

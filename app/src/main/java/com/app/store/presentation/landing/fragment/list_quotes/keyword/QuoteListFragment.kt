@@ -1,4 +1,4 @@
-package com.app.store.presentation.landing.fragment.list_quotes
+package com.app.store.presentation.landing.fragment.list_quotes.keyword
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.store.R
 import com.app.store.data.model.QuoteListResponse
+import com.app.store.presentation.landing.fragment.list_quotes.QuoteListAdapter
 import kotlinx.android.synthetic.main.frag_quote_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class QuoteListFragment : Fragment() {
 
@@ -47,14 +47,23 @@ class QuoteListFragment : Fragment() {
         rv_quote_list.adapter = adapter
         rv_quote_list.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
+        button_search_quote.setOnClickListener { searchQuote() }
+
         viewModel.quoteList.observe(viewLifecycleOwner) { constructList(it) }
-        viewModel.getQuoteList()
+        viewModel.getQuoteListKeyword(null)
+    }
+
+    private fun searchQuote() {
+        val keyword = edit_text_search_quote.text.toString()
+        viewModel.getQuoteListKeyword(keyword)
     }
 
     private fun constructList(result: QuoteListResponse) {
-        if (result.quotes.size > 0) {
-            adapter.setItem(result.quotes)
+        if (viewModel.quotes.size > 0) {
+            viewModel.quotes.clear()
         }
+        viewModel.quotes.addAll(result.quotes)
+        adapter.setItem(viewModel.quotes)
     }
 
 }

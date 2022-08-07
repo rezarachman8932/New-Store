@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.app.store.R
 import com.app.store.data.model.QuoteOfTheDayDetail
 import kotlinx.android.synthetic.main.frag_quote_detail.*
@@ -33,7 +35,15 @@ class QuoteDetailFragment : Fragment() {
             param = QuoteDetailFragmentArgs.fromBundle(requireArguments()).quoteId
         }
 
-        adapter = QuoteDetailTagAdapter {  }
+        adapter = QuoteDetailTagAdapter {
+            activity?.let { activity ->
+                val navController: NavController = Navigation.findNavController(activity, R.id.nav_host_fragment)
+                val bundle = Bundle()
+                bundle.putString("tag", it)
+                navController.navigate(R.id.action_detailFragment_to_quoteSearchTagListFragment, bundle)
+            }
+        }
+
         rv_tag_quote_detail.adapter = adapter
 
         viewModel.quoteDetail.observe(viewLifecycleOwner) { bindData(it) }

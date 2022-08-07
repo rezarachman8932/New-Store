@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/quoteListFragment"
-        android:name="com.app.store.presentation.landing.fragment.list_quotes.QuoteListFragment"
+        android:name="com.app.store.presentation.landing.fragment.list_quotes.keyword.QuoteListFragment"
         android:label="QuoteListFragment" >
         <action
             android:id="@+id/action_quoteListFragment_to_quoteDetailFragment"
@@ -37,8 +37,22 @@
         android:id="@+id/detailFragment"
         android:name="com.app.store.presentation.landing.fragment.quote_detail.QuoteDetailFragment"
         android:label="QuoteDetailFragment">
+        <action
+            android:id="@+id/action_detailFragment_to_quoteSearchTagListFragment"
+            app:destination="@id/quoteSearchTagListFragment" />
         <argument
             android:name="quoteId"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/quoteSearchTagListFragment"
+        android:name="com.app.store.presentation.landing.fragment.list_quotes.tag.QuoteListTagSearchFragment"
+        android:label="QuoteListTagSearchFragment">
+        <argument
+            android:name="tag"
             app:argType="string"
             android:defaultValue=""
             app:nullable="false"/>

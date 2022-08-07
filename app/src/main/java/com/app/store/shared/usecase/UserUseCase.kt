@@ -35,4 +35,16 @@ class UserUseCase(private val userRepository: UserRepository) {
         return userRepository.isLoggedIn()
     }
 
+    fun setName(name: String) {
+        userRepository.setName(name)
+    }
+
+    fun getName(): String {
+        return userRepository.getName()
+    }
+
+    fun deleteName() {
+        userRepository.deleteName()
+    }
+
 }

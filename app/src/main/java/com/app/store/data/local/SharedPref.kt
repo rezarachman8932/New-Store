@@ -27,6 +27,16 @@ class SharedPref(context: Context) {
         return sessionPref.getBoolean(SharedPrefConstant.IS_LOGGED_IN, false)
     }
 
+    fun setName(name: String) {
+        sessionPref.edit().putString(SharedPrefConstant.PREF_NAME, name).apply()
+    }
 
+    fun getName(): String {
+        return sessionPref.getString(SharedPrefConstant.PREF_NAME, "").orEmpty()
+    }
+
+    fun deleteName() {
+        sessionPref.edit().remove(SharedPrefConstant.PREF_NAME).apply()
+    }
 
 }

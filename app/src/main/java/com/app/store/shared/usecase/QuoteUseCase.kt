@@ -14,6 +14,14 @@ class QuoteUseCase(private val quoteRepository: QuoteRepository) {
         quoteRepository.getListQuotes()
     }
 
+    suspend fun getListQuotesBySearch(keyword: String) = withContext(Dispatchers.IO) {
+        quoteRepository.getListQuotesBySearch(keyword)
+    }
+
+    suspend fun getListQuotesByTag(tag: String) = withContext(Dispatchers.IO) {
+        quoteRepository.getListQuotesByTag(tag)
+    }
+
     suspend fun getQuote(quoteId: String) = withContext(Dispatchers.IO) {
         quoteRepository.getQuote(quoteId)
     }

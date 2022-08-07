@@ -25,6 +25,12 @@ class UserLoginActivity : AppCompatActivity() {
         }
 
         button_login.setOnClickListener { doSignIn() }
+        text_login_register.setOnClickListener { navigateToRegister() }
+    }
+
+    private fun navigateToRegister() {
+        val intent = Intent(this, UserRegistrationActivity::class.java)
+        startActivity(intent)
     }
 
     private fun doSignIn() {

@@ -21,7 +21,7 @@ class UserRegistrationViewModel(private val userUseCase: UserUseCase) : BaseView
             try {
                 val response = userUseCase.createUser(request)
                 if (response.isSuccessful) {
-                    response.body()?.userToken?.let { userUseCase.setToken(it) }
+                    userUseCase.setToken("")
                     _userCreate.postValue(response.body())
                 }
             } catch (throwable: Throwable) {

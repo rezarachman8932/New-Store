@@ -21,6 +21,7 @@ class HomeViewModel(private val userUseCase: UserUseCase) : BaseViewModel() {
                 if (response.isSuccessful) {
                     userUseCase.deleteToken()
                     userUseCase.setLoggedIn(false)
+                    userUseCase.deleteName()
                     _deleteSession.postValue(response.body())
                 }
             } catch (throwable: Throwable) {

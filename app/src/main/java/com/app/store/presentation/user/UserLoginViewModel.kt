@@ -22,8 +22,10 @@ class UserLoginViewModel(private val userUseCase: UserUseCase) : BaseViewModel()
                 val response = userUseCase.createSession(request)
 
                 if (response.isSuccessful) {
-                    response.body()?.userToken?.let { userUseCase.setToken(it) }
+                    userUseCase.setToken("")
                     userUseCase.setLoggedIn(true)
+                    userUseCase.setName(response.body()?.login!!)
+
                     _userCreateSession.postValue(response.body())
                 }
             } catch (throwable: Throwable) {
