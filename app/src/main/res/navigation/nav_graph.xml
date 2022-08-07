@@ -7,41 +7,41 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="H"
-        android:label="HomeFragment" >
+        android:name="com.app.store.presentation.landing.fragment.home.HomeFragment"
+        android:label="HomeFragment"
+        app:defaultNavHost="true">
         <action
-            android:id="@+id/action_homeFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
+            android:id="@+id/action_homeFragment_to_quoteOfTheDayFragment"
+            app:destination="@id/quoteOfTheDayFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_rankFragment"
-            app:destination="@id/rankFragment" />
+            android:id="@+id/action_homeFragment_to_quoteListFragment"
+            app:destination="@id/quoteListFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/quizFragment"
-        android:name="com.assingment.android.view.quiz.QuizFragment"
-        android:label="QuizFragment" >
-        <action
-            android:id="@+id/action_quizFragment_to_scoreFragment"
-            app:destination="@id/scoreFragment" />
+        android:id="@+id/quoteOfTheDayFragment"
+        android:name="com.app.store.presentation.landing.fragment.quote_day.QuoteOfTheDayFragment"
+        android:label="QuoteOfTheDayFragment">
     </fragment>
 
     <fragment
-        android:id="@+id/scoreFragment"
-        android:name="com.assingment.android.view.score.ScoreFragment"
-        android:label="ScoreFragment" >
+        android:id="@+id/quoteListFragment"
+        android:name="com.app.store.presentation.landing.fragment.list_quotes.QuoteListFragment"
+        android:label="QuoteListFragment" >
         <action
-            android:id="@+id/action_scoreFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            android:id="@+id/action_quoteListFragment_to_quoteDetailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/rankFragment"
-        android:name="com.assingment.android.view.rank.RankFragment"
-        android:label="RankFragment" >
+        android:id="@+id/detailFragment"
+        android:name="com.app.store.presentation.landing.fragment.quote_detail.QuoteDetailFragment"
+        android:label="QuoteDetailFragment">
+        <argument
+            android:name="quoteId"
+            app:argType="string"
+            android:defaultValue=""
+            app:nullable="false"/>
     </fragment>
 
 </navigation>

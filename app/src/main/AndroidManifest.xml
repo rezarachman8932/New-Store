@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewStore">
         <activity
-            android:name=".presentation.user.UserLoginActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.landing.MainActivity"/>
-        <activity android:name=".presentation.splash.SplashActivity"/>
+        <activity android:name=".presentation.user.UserLoginActivity"/>
         <activity android:name=".presentation.user.UserRegistrationActivity"/>
     </application>
 

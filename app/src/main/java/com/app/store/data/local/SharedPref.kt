@@ -11,6 +11,10 @@ class SharedPref(context: Context) {
         sessionPref.edit().putString(SharedPrefConstant.PREF_TOKEN, token).apply()
     }
 
+    fun deleteToken() {
+        sessionPref.edit().remove(SharedPrefConstant.PREF_TOKEN).apply()
+    }
+
     fun getToken(): String {
         return sessionPref.getString(SharedPrefConstant.PREF_TOKEN, "").orEmpty()
     }
@@ -22,5 +26,7 @@ class SharedPref(context: Context) {
     fun isLoggedIn(): Boolean {
         return sessionPref.getBoolean(SharedPrefConstant.IS_LOGGED_IN, false)
     }
+
+
 
 }

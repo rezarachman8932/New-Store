@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.app.store.R
 import com.app.store.data.model.QuoteListResponse
 import com.app.store.shared.model.BaseResponse
 import com.app.store.shared.model.ResultState
+import kotlinx.android.synthetic.main.frag_quote_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuoteListFragment : Fragment() {
@@ -18,7 +18,6 @@ class QuoteListFragment : Fragment() {
     private val viewModel: QuoteListViewModel by viewModel()
 
     private lateinit var adapter: QuoteListAdapter
-    private lateinit var quoteList: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +30,10 @@ class QuoteListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = QuoteListAdapter {  }
-        quoteList.adapter = adapter
+        adapter = QuoteListAdapter {
+
+        }
+        rv_quote_list.adapter = adapter
 
         viewModel.quoteList.observe(viewLifecycleOwner) { constructList(it) }
         viewModel.getQuoteList()

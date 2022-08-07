@@ -23,4 +23,16 @@ class UserUseCase(private val userRepository: UserRepository) {
         userRepository.setToken(token)
     }
 
+    suspend fun deleteToken() = withContext(Dispatchers.IO) {
+        userRepository.deleteToken()
+    }
+
+    fun setLoggedIn(loggedIn: Boolean) {
+        userRepository.setLoggedIn(loggedIn)
+    }
+
+    fun isLoggedIn(): Boolean {
+        return userRepository.isLoggedIn()
+    }
+
 }

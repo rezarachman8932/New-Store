@@ -6,17 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.app.store.R
-import com.app.store.data.model.QuoteOfTheDayResponse
-import com.app.store.presentation.landing.fragment.quote_day.QuoteOfTheDayViewModel
+import com.app.store.data.model.QuoteOfTheDayDetail
 import com.app.store.shared.model.BaseResponse
 import com.app.store.shared.model.ResultState
-import kotlinx.android.synthetic.main.frag_quote_of_the_day.*
+import kotlinx.android.synthetic.main.frag_quote_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuoteDetailFragment : Fragment() {
 
     private val layoutId: Int = R.layout.frag_quote_detail
     private val viewModel: QuoteDetailViewModel by viewModel()
+
+    private lateinit var adapter: QuoteDetailTagAdapter
+    private lateinit var param: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,27 +31,29 @@ class QuoteDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.quoteDetail.observe(viewLifecycleOwner) {  }
-        viewModel.getQuoteDetail()
-    }
-
-//    private fun constructList(result: ResultState<BaseResponse<QuoteOfTheDayResponse>>) {
-//        when (result) {
-//            is ResultState.Success -> { result.data?.let { bindData(it.data) } }
-//            is ResultState.Error -> {  }
-//        }
-//    }
-
-    private fun bindData(response: QuoteOfTheDayResponse) {
-        text_author_of_the_day.text = response.quote.author
-        text_body_of_the_day.text = response.quote.body
-
-        var tags = ""
-        response.quote.tags.forEach {
-            tags = "$it $tags"
+        if (arguments != null) {
+            param = QuoteDetailFragmentArgs.fromBundle(requireArguments()).quoteId
         }
 
-        text_tags_of_the_day.text = tags
+        adapter = QuoteDetailTagAdapter {  }
+        rv_tag_quote_detail.adapter = adapter
+
+        viewModel.quoteDetail.observe(viewLifecycleOwner) { constructContent(it) }
+        viewModel.getQuoteDetail(param)
+    }
+
+    private fun constructContent(result: ResultState<BaseResponse<QuoteOfTheDayDetail>>) {
+        when (result) {
+            is ResultState.Success -> { result.data?.let { bindData(it.data) } }
+            is ResultState.Error -> {  }
+        }
+    }
+
+    private fun bindData(response: QuoteOfTheDayDetail) {
+        text_author_detail.text = response.author
+        text_quote_detail.text = response.body
+
+        adapter.setItem(response.tags)
     }
 
 }

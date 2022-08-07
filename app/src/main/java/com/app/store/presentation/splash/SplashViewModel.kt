@@ -1,9 +1,12 @@
 package com.app.store.presentation.splash
 
-import androidx.lifecycle.ViewModel
+import com.app.store.shared.usecase.UserUseCase
+import com.app.store.shared.vm.BaseViewModel
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel(private val userUseCase: UserUseCase) : BaseViewModel() {
 
-
+    fun isLoggedIn(): Boolean {
+        return userUseCase.isLoggedIn()
+    }
 
 }
